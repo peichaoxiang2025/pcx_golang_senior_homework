@@ -4,31 +4,17 @@ import (
 	"fmt"
 )
 
-func findSingleNumber(numbers []int) int {
-	//创建map存储每个数字出现的次数
-	countMap := make(map[int]int)
-
-	//遍历数组，对每个数字进行计数
-	for _, number := range numbers {
-		countMap[number]++
+func incrementByTen(numPtr *int) {
+	if numPtr == nil {
+		fmt.Println("错误：接收到空指针")
+		return
 	}
-
-	//遍历map，找到出现次数为1的数字
-	for number, count := range countMap {
-		if count == 1 {
-			return number
-		}
-	}
-
-	return -1
+	*numPtr += 10
 }
 
 func main() {
-	nums1 := []int{2, 2, 1}
-	nums2 := []int{4, 1, 2, 1, 2}
-	nums3 := []int{1}
-
-	fmt.Println(findSingleNumber(nums1)) // 输出: 1
-	fmt.Println(findSingleNumber(nums2)) // 输出: 4
-	fmt.Println(findSingleNumber(nums3)) // 输出: 1
+	value1 := 5
+	fmt.Printf("修改前值1: %d\n", value1)
+	incrementByTen(&value1)
+	fmt.Printf("修改后值1: %d\n", value1) // 预期输出15
 }
